@@ -38,10 +38,23 @@ def fast_algorithm(self, *args, **kwargs):
 
 
 def working_algorithm(self, *args, **kwargs):
-    distance = kwargs.get("distance")
-    tank_cap = kwargs.get("tank_cap")
-    stations = kwargs.get("stations")
+    dist = kwargs.get("distance")
+    miles = kwargs.get("tank_cap")
+    gas_stations = kwargs.get("stations")
+    n = len(gas_stations)
 
-    result = "awesome"
+    num_refill, curr_refill, limit = 0, 0, miles
+    while limit < dist:  # While the destination cannot be reached with current fuel
+        if curr_refill >= n or gas_stations[curr_refill] > limit:
+            # Cannot reach the destination nor the next gas station
+            return -1
+        # Find the furthest gas station we can reach
+        while curr_refill < n - 1 and gas_stations[curr_refill + 1] <= limit:
+            curr_refill += 1
+        num_refill += 1  # Stop to tank
+        limit = gas_stations[curr_refill] + miles  # Fill up the tank
+        curr_refill += 1
+
+    result = num_refill
 
     return result
