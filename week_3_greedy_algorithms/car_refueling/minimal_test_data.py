@@ -33,6 +33,19 @@ data3 = {
     "stations": [150],
 }
 
+data4 = {
+    "name": 3,
+    "distance": 30,
+    "tank_cap": 10,
+    "stations": [0, 0, 10, 10, 20, 40, 60, 60, 90],
+}
+data7 = {
+    "name": 3,
+    "distance": 50,
+    "tank_cap": 10,
+    "stations": [0, 10, 20, 20, 30, 40, 40, 50, 60],
+}
+
 
 test_data = [data1, data2, data3, data5, data6]
 

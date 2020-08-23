@@ -7,38 +7,26 @@ def compute_min_refills(distance, tank, stops):
     tank_cap = tank
     stations = stops
 
-    stops = 0
-    stations_reversed = sorted(stations, reverse=True)
-    last_station = 0
+    dist = distance
+    miles = tank
+    gas_stations = stations
+    n = len(gas_stations)
 
-    # can make it without stop
-    if tank_cap - distance >= 0:
-        return 0
-
-    while distance >= 0:
-        made_station = False
-        for i, station in enumerate(stations_reversed):
-            if (last_station + tank_cap) - station >= 0:
-                # decrease distance
-                distance -= station
-
-                # remove all stations not needed
-                stations_reversed = stations_reversed[0:i]
-
-                # set last station stop
-                last_station = station
-
-                # increase stops
-                stops += 1
-
-                # set made it to a station
-                made_station = True
-                break
-
-        if not made_station:
+    num_refill, curr_refill, limit = 0, 0, miles
+    while limit < dist:  # While the destination cannot be reached with current fuel
+        if curr_refill >= n or gas_stations[curr_refill] > limit:
+            # Cannot reach the destination nor the next gas station
             return -1
+        # Find the furthest gas station we can reach
+        while curr_refill < n - 1 and gas_stations[curr_refill + 1] <= limit:
+            curr_refill += 1
+        num_refill += 1  # Stop to tank
+        limit = gas_stations[curr_refill] + miles  # Fill up the tank
+        curr_refill += 1
 
-    return stops
+    result = num_refill
+
+    return result
 
 
 if __name__ == "__main__":

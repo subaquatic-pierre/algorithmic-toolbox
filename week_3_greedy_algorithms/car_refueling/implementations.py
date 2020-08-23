@@ -4,8 +4,9 @@ def fast_algorithm(self, *args, **kwargs):
     stations = kwargs.get("stations")
 
     stops = 0
-    stations_reversed = sorted(stations, reverse=True)
+    stations_reversed = sorted(list(set(stations)), reverse=True)
     last_station = 0
+    original_distance = distance
 
     # can make it without stop
     if tank_cap - distance >= 0:
@@ -29,6 +30,10 @@ def fast_algorithm(self, *args, **kwargs):
 
                 # set made it to a station
                 made_station = True
+
+                if last_station + tank_cap >= original_distance:
+                    return stops
+
                 break
 
         if not made_station:

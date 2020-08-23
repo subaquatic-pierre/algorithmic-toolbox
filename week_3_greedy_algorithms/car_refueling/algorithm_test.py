@@ -112,6 +112,21 @@ class AlgorithmTestStressBase(AlgorithmTest, ABC):
     def build_data(self, **kwargs):
         pass
 
+    def print_fail(self, result):
+        test_name = result.get_name()
+        test_data = result.get_data()
+        algorithms = result.get_algorithms()
+        results = result.get_test_result()
+        print("\n---TEST FAIL---")
+        print(f"TEST NAME : {test_name}")
+        print(f"TEST DATA : {test_data}")
+        print("------")
+        for i, algorithm in enumerate(algorithms):
+            result = results[i]
+            print(f"ALGORITHM NAME: {algorithm.name}")
+            print(f"RESULT : {result}")
+        print("------\n")
+
     def run(self, duration=3):
         """ 
         Runs all the tests passed in at creation
@@ -148,8 +163,7 @@ class AlgorithmTestStressBase(AlgorithmTest, ABC):
                 test_results.append(algorithm_result)
 
             result = TestResult(test_name, algorithms, test_results, test_data)
-            result.check_results(show_print=False)
 
-            if result.failure == True:
-                result.print_fail()
+            if result.get_status() == "fail":
+                self.print_fail(result)
                 break

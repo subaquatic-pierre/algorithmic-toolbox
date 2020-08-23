@@ -35,6 +35,7 @@ class TestResult:
 
         if not all_equal:
             self.set_status("fail")
+            return self.get_test_result()
         else:
             self.set_status("pass")
 
