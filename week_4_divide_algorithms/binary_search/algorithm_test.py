@@ -159,7 +159,7 @@ class AlgorithmTestStressBase(AlgorithmTest, ABC):
             # get test results
             test_results = []
             for algorithm in algorithms:
-                algorithm_result = round(algorithm.use(**test_data), 2)
+                algorithm_result = algorithm.use(**test_data)
                 test_results.append(algorithm_result)
 
             result = TestResult(test_name, algorithms, test_results, test_data)
