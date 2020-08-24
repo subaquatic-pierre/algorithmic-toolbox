@@ -1,8 +1,7 @@
-import random
 from algorithm import Algorithm
 from stress_test import AlgorithmTestStress
 from minimal_test import AlgorithmTestMinimal
-from minimal_test_data import test_data, data1, data7, data2, data3, data5, data4
+from minimal_test_data import test_data, data1, data2
 from implementations import (
     fast_algorithm,
     working_algorithm,
