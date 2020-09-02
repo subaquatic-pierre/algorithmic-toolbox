@@ -1,8 +1,10 @@
-def fast_algorithm(self, *args, **kwargs):
-    # solve the problem here
+# Uses python3
+import sys
 
-    coins = kwargs.get("coins")
-    amount = kwargs.get("amount")
+
+def get_change(m):
+    coins = [4, 3, 1]
+    amount = m
 
     D = [coin for coin in coins]
     D.insert(0, 0)
@@ -37,10 +39,6 @@ def fast_algorithm(self, *args, **kwargs):
     return result
 
 
-def working_algorithm(self, *args, **kwargs):
-    # solve the problem here
-    solution = 42
-
-    result = solution
-
-    return result
+if __name__ == "__main__":
+    m = int(sys.stdin.read())
+    print(get_change(m))

@@ -15,12 +15,12 @@ fast_algorithm = Algorithm("fast_algorithm", fast_algorithm)
 algorithms = [fast_algorithm]
 data = [data1]
 
-fast_algorithm.use(coins=[1, 3, 4], amount=10)
+# fast_algorithm.use(coins=[1, 3, 4], amount=10)
 
-# minimal_test = AlgorithmTestMinimal(algorithms, data)
+minimal_test = AlgorithmTestMinimal(algorithms, data)
 
-# minimal_test.run()
-# minimal_test.print_results()
+minimal_test.run()
+minimal_test.print_results()
 
 
 # if __name__ == "__main__":
